@@ -19,7 +19,7 @@
 ## Быстрый старт 🚀
 
 ```bash
-git clone https://github.com/yourusername/ai-website-generator.git
+git clone https://github.com/puskainrestpease/ai-website-generator.git
 cd ai-website-generator
 
 # Запуск в development режиме
