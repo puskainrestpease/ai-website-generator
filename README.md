@@ -1,31 +1,56 @@
-# AI Website Generator 🚀
+# AI Website Generator
 
-[![CI/CD](https://github.com/puskainrestpease/ai-website-generator/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/puskainrestpease/ai-website-generator/actions)
-[![Docker](https://img.shields.io/docker/pulls/puskainrestpease/ai-website-generator)](https://hub.docker.com/r/puskainrestpease/ai-website-generator)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+An experimental full-stack scaffold for an AI-assisted website-generation service.
 
-Генератор сайтов на Next.js с использованием AI (Ollama).
+The repository contains a FastAPI backend, a Next.js frontend directory and a Docker Compose configuration for supporting services. The project is under development and is not presented as a production-ready application.
 
-## Features ✨
-- Генерация кода через LLM (Llama2)
-- JWT аутентификация
-- PostgreSQL + Redis
-- Rate limiting
-- Полный CI/CD
-- Docker-ориентированная архитектура
-- Мониторинг (Sentry + Prometheus)
-- Автоматическая документация API
+## Architecture
 
-## Быстрый старт 🚀
+| Component | Technology |
+| --- | --- |
+| Backend API | Python, FastAPI, Uvicorn |
+| Database | PostgreSQL, SQLAlchemy, Alembic |
+| Cache / queue support | Redis |
+| Authentication | JWT-related dependencies |
+| AI runtime | Ollama |
+| Monitoring | Prometheus client, Sentry SDK |
+| Frontend | Next.js scaffold |
+| Reverse proxy | Nginx |
+| Deployment | Docker Compose |
+
+The Compose configuration also declares Grafana and supporting containers.
+
+## Backend dependencies
+
+Install the backend requirements:
 
 ```bash
-git clone https://github.com/puskainrestpease/ai-website-generator.git
-cd ai-website-generator
+cd backend
+python -m venv .venv
 
-# Запуск в development режиме
-docker-compose -f docker-compose.dev.yml up
+# Windows
+.venv\\Scripts\\activate
 
-# Запуск в production режиме
-docker-compose up -d
+# Linux / macOS
+source .venv/bin/activate
 
-(проект в разработке)
+pip install -r requirements.txt
+```
+
+## Running the stack
+
+The root Compose file describes the development environment:
+
+```bash
+docker compose up --build
+```
+
+The configuration expects a root `.env` file. Supply environment variables for the database, JWT signing, Redis and other configured services before starting the containers. Never commit real credentials.
+
+## Project status
+
+The repository is an implementation scaffold. The frontend package manifest is currently empty and the application components may require additional implementation before the full Compose stack can build successfully.
+
+## Security
+
+Use non-default credentials, restrict exposed service ports, and review the Docker and Nginx configuration before deploying to a public host.
